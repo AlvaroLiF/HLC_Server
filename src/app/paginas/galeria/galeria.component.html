@@ -1,0 +1,23 @@
+<app-cabecera [titulo]="'Galería'"></app-cabecera>
+
+<div class="row">
+  <div class="col col-4">
+    <div class="form-outline">
+      <input type="text" placeholder="Buscar" class="form-control mb-4" [(ngModel)]="cadenaBusqueda" />
+    </div>
+  </div>
+</div>
+<div class="row mb-4" *ngIf="favoritos.length>0">
+  <div class="col col-12">Añadido a favoritos</div>
+  <div class="col col-12" *ngFor="let elemento of favoritos">
+    {{elemento}}
+  </div>
+</div>
+<div class="row justify-content-center">
+  <div *ngFor="let juego of juegosObtenidos|filtro:cadenaBusqueda" class="col col-md-4"
+    style="width: 18rem; margin: 10px;">
+    <app-juego-card [juego]="juego" (notificaCambio)="meterEnFavoritos($event)">
+    </app-juego-card>
+  </div>
+</div>
+<app-footer></app-footer>
